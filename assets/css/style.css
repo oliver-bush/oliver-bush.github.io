@@ -1,0 +1,310 @@
+/* Oliver Bush — academic site
+   Palette and type are defined once here. */
+
+:root {
+  --bg:        #fdfcfa;
+  --bg-soft:   #f5f3ee;
+  --rule:      #e2ded4;
+  --ink:       #1b1a18;
+  --ink-soft:  #55524c;
+  --ink-faint: #7d7a72;
+  --accent:    #2d4a6b;
+  --maxw:      1060px;
+  --measure:   40rem;
+}
+:root {
+  --accent-dk: #1c3049;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #16171a;
+    --bg-soft:   #1e2024;
+    --rule:      #32353b;
+    --ink:       #e8e6e1;
+    --ink-soft:  #b3afa7;
+    --ink-faint: #8a867e;
+    --accent:    #9cc0e4;
+    --accent-dk: #c2d8ef;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Serif 4", "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 640px) { body { font-size: 17px; } }
+
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(45,74,107,.28); }
+a:hover { border-bottom-color: currentColor; }
+@media (prefers-color-scheme: dark) { a { border-bottom-color: rgba(156,192,228,.35); } }
+
+img { max-width: 100%; display: block; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: 24px; }
+
+/* "narrow" keeps the left edge flush with the rest of the page and only
+   constrains the measure of the running text. */
+.narrow > p,
+.narrow > .lede,
+.narrow > dl,
+.narrow > .papers,
+.narrow > .table-scroll,
+.narrow > .page-title,
+.narrow > .meta { max-width: 44rem; }
+
+/* ---------- header ---------- */
+
+.site-head {
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg);
+}
+.site-head .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 28px;
+  padding-block: 20px 18px;
+}
+.brand {
+  font-size: 1.06rem;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 0;
+  font-weight: 600;
+}
+.brand:hover { color: var(--accent); }
+
+nav.main { display: flex; flex-wrap: wrap; gap: 22px; }
+nav.main a {
+  font-size: .93rem;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border: 0;
+  padding-bottom: 2px;
+}
+nav.main a:hover { color: var(--accent); }
+nav.main a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--accent);
+}
+
+/* ---------- type ---------- */
+
+h1, h2, h3 { line-height: 1.22; font-weight: 600; margin: 0; }
+
+h1.name {
+  font-size: clamp(2.1rem, 5.4vw, 3rem);
+  letter-spacing: -.012em;
+  margin-bottom: .28rem;
+}
+h1.page-title {
+  font-size: clamp(1.8rem, 4.2vw, 2.3rem);
+  letter-spacing: -.01em;
+  margin-bottom: 1.1rem;
+}
+.role {
+  font-size: clamp(1.06rem, 2.4vw, 1.2rem);
+  color: var(--ink-soft);
+  margin: 0 0 .9rem;
+  font-style: italic;
+}
+.affil {
+  font-size: .96rem;
+  color: var(--ink-faint);
+  margin: 0;
+  line-height: 1.5;
+}
+
+h2.section {
+  font-size: .87rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.5rem;
+}
+
+.lede {
+  font-size: 1.1em;
+  color: var(--ink);
+}
+
+p { margin: 0 0 1.05em; }
+p:last-child { margin-bottom: 0; }
+
+/* ---------- layout blocks ---------- */
+
+section { padding-block: 3.1rem; }
+section + section { border-top: 1px solid var(--rule); }
+@media (max-width: 640px) { section { padding-block: 2.4rem; } }
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 48px;
+  align-items: start;
+  padding-block: 3.4rem 3.1rem;
+}
+@media (max-width: 780px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; padding-block: 2.4rem; }
+  .portrait { max-width: 200px; order: -1; margin: 0; }
+}
+.portrait { margin: 0; }
+.portrait img {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  filter: saturate(.94);
+}
+.portrait figcaption {
+  font-size: .78rem;
+  color: var(--ink-faint);
+  margin-top: .5rem;
+}
+
+/* ---------- buttons ---------- */
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.6rem; }
+.btn {
+  display: inline-block;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: .46rem .95rem;
+  font-size: .88rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: transparent;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg-soft); }
+.btn.primary { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- paper entries ---------- */
+
+.papers { display: flex; flex-direction: column; gap: 2.3rem; }
+.papers.tight { gap: 1.5rem; }
+
+.paper .kicker {
+  font-size: .74rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: .34rem;
+}
+.paper h3 {
+  font-size: 1.16rem;
+  margin-bottom: .3rem;
+  max-width: var(--measure);
+}
+.paper h3 a { color: var(--ink); border: 0; }
+.paper h3 a:hover { color: var(--accent); }
+.paper .meta {
+  font-size: .93rem;
+  color: var(--ink-soft);
+  margin-bottom: .55rem;
+}
+.paper .meta .status {
+  color: var(--ink);
+  font-style: italic;
+}
+.paper .abstract {
+  max-width: var(--measure);
+  font-size: .96rem;
+  color: var(--ink-soft);
+  margin-bottom: .6rem;
+}
+.paper .links {
+  font-size: .89rem;
+  letter-spacing: .02em;
+}
+.paper .links a + a::before {
+  content: "·";
+  color: var(--ink-faint);
+  margin: 0 .5rem;
+  border: 0;
+  display: inline-block;
+}
+
+/* selected-research cards on the home page */
+.selected { display: grid; gap: 1.7rem; }
+.selected .paper {
+  border-left: 2px solid var(--rule);
+  padding-left: 1.15rem;
+}
+.selected .paper:hover { border-left-color: var(--accent); }
+
+/* ---------- themes ---------- */
+
+.themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+@media (max-width: 780px) { .themes { grid-template-columns: 1fr; gap: 1.5rem; } }
+.themes h3 { font-size: 1.02rem; margin-bottom: .4rem; }
+.themes p { font-size: .95rem; color: var(--ink-soft); }
+
+/* ---------- tables ---------- */
+
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: .62rem 1rem .62rem 0; vertical-align: top; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; color: var(--ink-faint); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+td.year, td.ch { white-space: nowrap; color: var(--ink-faint); width: 1%; padding-right: 1.6rem; }
+
+/* ---------- contact ---------- */
+
+.contact dl { display: grid; grid-template-columns: max-content 1fr; gap: .55rem 1.8rem; margin: 0; font-size: .97rem; }
+.contact dt { color: var(--ink-faint); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; padding-top: .18em; }
+.contact dd { margin: 0; }
+@media (max-width: 520px) { .contact dl { grid-template-columns: 1fr; gap: .1rem 0; } .contact dd { margin-bottom: .8rem; } }
+
+/* ---------- cv embed ---------- */
+
+.cv-embed {
+  width: 100%;
+  height: min(84vh, 1000px);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--bg-soft);
+}
+@media (max-width: 780px) { .cv-embed { display: none; } }
+.cv-embed-note { display: none; font-size: .95rem; color: var(--ink-soft); }
+@media (max-width: 780px) { .cv-embed-note { display: block; } }
+
+/* ---------- footer ---------- */
+
+.site-foot {
+  border-top: 1px solid var(--rule);
+  margin-top: 0;
+  padding-block: 1.8rem 2.6rem;
+  font-size: .86rem;
+  color: var(--ink-faint);
+}
+.site-foot a { color: var(--ink-faint); }
+.site-foot a:hover { color: var(--accent); }
+
+ul.plain { margin: 0; padding-left: 1.15rem; }
+ul.plain li { margin-bottom: .45rem; }
+
+.note {
+  font-size: .9rem;
+  color: var(--ink-soft);
+  background: var(--bg-soft);
+  border-left: 2px solid var(--rule);
+  padding: .8rem 1rem;
+  margin-top: 1.6rem;
+  max-width: var(--measure);
+}
