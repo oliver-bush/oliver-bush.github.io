@@ -283,6 +283,8 @@ td.year, td.ch { white-space: nowrap; color: var(--ink-faint); width: 1%; paddin
 @media (max-width: 780px) { .cv-embed { display: none; } }
 .cv-embed-note { display: none; font-size: .95rem; color: var(--ink-soft); }
 @media (max-width: 780px) { .cv-embed-note { display: block; } }
+.embed-fallback { margin-top: .8rem; font-size: .88rem; color: var(--ink-faint); }
+@media (max-width: 780px) { .embed-fallback { display: none; } }
 
 /* ---------- footer ---------- */
 
