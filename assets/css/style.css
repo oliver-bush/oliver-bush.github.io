@@ -128,6 +128,14 @@ h1.page-title {
   margin: 0;
   line-height: 1.5;
 }
+/* each role is one block; a role that wraps gets a hanging indent so its
+   continuation reads as part of the same entry, not a separate affiliation */
+.affil span {
+  display: block;
+  text-indent: -0.9em;
+  padding-left: 0.9em;
+  max-width: 34rem;
+}
 
 h2.section {
   font-size: .87rem;
