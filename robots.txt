@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oliver-bush.github.io/sitemap.xml
